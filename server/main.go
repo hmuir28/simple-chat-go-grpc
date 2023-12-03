@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net"
+
 	pb "github.com/hmuir28/go-grpc-chat/proto"
 	"google.golang.org/grpc"
 )
@@ -10,6 +11,10 @@ import (
 const (
 	port = ":8000"
 )
+
+type helloServer struct {
+	pb.GreetServiceServer
+}
 
 func main() {
 
@@ -21,9 +26,9 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 
-	pb
+	pb.RegisterGreetServiceServer(grpcServer, &helloServer{})
 
-	err := grpcServer.Serve(lis); err != nil {
+	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("Failed to start: %v", err)
 	}
 
