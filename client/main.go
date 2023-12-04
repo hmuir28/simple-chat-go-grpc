@@ -28,5 +28,8 @@ func main() {
 		Names: []string{"Harry", "Michael", "Brian"},
 	}
 
-	callSayHelloServerStreaming(client, names)
+	// callSayHello(client)
+	// callSayHelloServerStreaming(client, names)
+	// callSayHelloClientStreaming(client, names)
+	callSayHelloBidrectionalStreaming(client, names)
 }
